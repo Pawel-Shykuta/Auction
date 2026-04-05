@@ -1,0 +1,20 @@
+.logo_Wrapper {
+  font-size: 16px;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+
+  position: absolute;
+
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo_Icon {
+  font-size: 25px;
+  transform: scaleX(-1);
+}

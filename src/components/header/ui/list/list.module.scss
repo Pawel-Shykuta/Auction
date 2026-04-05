@@ -1,0 +1,14 @@
+.list_Wrapper {
+  display: flex;
+  gap: 20px;
+
+  list-style-type: none;
+  font-size: 14px;
+
+  li {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
