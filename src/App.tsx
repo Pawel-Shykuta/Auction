@@ -7,7 +7,9 @@ function App() {
   return (
     <AppContextProvider>
       <Header />
-      <main>{/* <Home /> */}</main>
+      <main>
+        <Home />
+      </main>
     </AppContextProvider>
   );
 }
