@@ -17,6 +17,7 @@ export default function Icons() {
           className={styles.heartIcon}
           onClick={() => setOnlyLickeds(!onlyLickeds)}
         />
+        <p>Favorites</p>
       </span>
 
       <span className={styles.iconsWrapper}>
@@ -24,6 +25,7 @@ export default function Icons() {
           className={styles.bellIcon}
           onClick={() => setMassagesWindowOpen(!massagesWindowOpen)}
         />
+        <p>Notifications</p>
       </span>
     </div>
   );

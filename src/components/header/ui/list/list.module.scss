@@ -12,3 +12,13 @@
     }
   }
 }
+
+@media (max-width: 450px) {
+  .list_Wrapper {
+    width: 100%;
+    flex-direction: column;
+    gap: 25px;
+
+    font-weight: 500;
+  }
+}

@@ -1,13 +1,14 @@
 import "./App.css";
 import Header from "./components/header";
+import { AppContextProvider } from "./context";
 import Home from "./pages/home/home";
 
 function App() {
   return (
-    <main>
+    <AppContextProvider>
       <Header />
-      <Home />
-    </main>
+      <main>{/* <Home /> */}</main>
+    </AppContextProvider>
   );
 }
 
