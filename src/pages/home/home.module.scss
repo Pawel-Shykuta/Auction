@@ -16,7 +16,7 @@
 
   h1 {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.5;
     color: oklch(0.145 0 0);
   }
@@ -30,5 +30,18 @@
     font-weight: 400;
     line-height: 1.5;
     color: #717182;
+  }
+}
+
+@media (max-width: 450px) {
+  .home_container {
+    padding: 20px 30px;
+  }
+
+  .text_container {
+    p {
+      max-width: 100%;
+      font-size: 16px;
+    }
   }
 }

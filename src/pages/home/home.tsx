@@ -1,5 +1,7 @@
 import styles from "./home.module.scss";
-import FilterPanel from "./ui/filterPanel/filterPanel";
+import { Auctions } from "./components/auctions/auctions";
+import Boxes from "./components/boxes/boxes";
+import FilterPanel from "./components/filterPanel/filterPanel";
 
 export default function Home() {
   return (
@@ -13,6 +15,9 @@ export default function Home() {
       </div>
 
       <FilterPanel />
+      <Boxes />
+
+      <Auctions />
     </div>
   );
 }

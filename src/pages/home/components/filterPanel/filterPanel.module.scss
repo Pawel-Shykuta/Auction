@@ -56,3 +56,16 @@
 .active {
   background-color: white;
 }
+
+@media (max-width: 450px) {
+  .filter_panel {
+    max-width: 100%;
+    gap: 20px 10px;
+    height: auto;
+    padding: 10px;
+
+    li {
+      min-width: 70px;
+    }
+  }
+}
