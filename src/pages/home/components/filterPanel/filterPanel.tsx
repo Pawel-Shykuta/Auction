@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./filterPanel.module.scss";
+import { useAppStore } from "@/store/useAppStore";
 
 export default function FilterPanel() {
   const filters = [
@@ -14,6 +15,13 @@ export default function FilterPanel() {
   ];
 
   const [active, setActive] = useState(0);
+  const setFilter = useAppStore((state) => state.setFilter);
+
+  const changeFilter = (el: string, i: number) => {
+    if (active === i) return;
+    setActive(i);
+    setFilter(el);
+  };
 
   return (
     <ul className={styles.filter_panel}>
@@ -21,7 +29,7 @@ export default function FilterPanel() {
         <li
           key={i}
           className={active === i ? styles.active : ""}
-          onClick={() => setActive(i)}
+          onClick={() => changeFilter(el, i)}
         >
           {el}
         </li>

@@ -2,22 +2,21 @@ import styles from "./home.module.scss";
 import { Auctions } from "./components/auctions/auctions";
 import Boxes from "./components/boxes/boxes";
 import FilterPanel from "./components/filterPanel/filterPanel";
+import Description from "./components/description/description";
+import { useItemStore } from "@/store/useItemStore";
+import ActiveAuction from "@/components/activAuction/activAuction";
 
 export default function Home() {
+  const activeItem = useItemStore((state) => state.activeItem);
+
   return (
     <div className={styles.home_container}>
-      <div className={styles.text_container}>
-        <h1>Live Auctions</h1>
-        <p>
-          Discover unique items and bid on your favorites. New auctions daily
-          with verified products and seller guarantee.
-        </p>
-      </div>
-
+      <Description />
       <FilterPanel />
       <Boxes />
-
       <Auctions />
+
+      {activeItem && <ActiveAuction />}
     </div>
   );
 }
