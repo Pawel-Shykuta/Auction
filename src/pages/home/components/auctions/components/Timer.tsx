@@ -5,6 +5,10 @@ export default function Timer({
   endTime: Date | null;
   now: number;
 }) {
+  if (!endTime) {
+    return <span>No end date</span>;
+  }
+
   const diff = endTime.getTime() - now;
 
   if (diff <= 0) {

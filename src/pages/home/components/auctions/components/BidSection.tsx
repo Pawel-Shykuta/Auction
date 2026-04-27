@@ -1,7 +1,7 @@
 import { IoMdTime } from "react-icons/io";
 import styles from "../auctions.module.scss";
 import type { Auctions } from "@/data/auctions";
-import Timer from "./timer";
+import Timer from "./Timer";
 
 interface ActionBidSectionProp {
   el: Auctions;
