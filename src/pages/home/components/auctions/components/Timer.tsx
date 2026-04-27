@@ -2,7 +2,7 @@ export default function Timer({
   endTime,
   now,
 }: {
-  endTime: Date;
+  endTime: Date | null;
   now: number;
 }) {
   const diff = endTime.getTime() - now;

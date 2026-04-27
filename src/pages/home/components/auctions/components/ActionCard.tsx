@@ -2,7 +2,7 @@ import styles from "../auctions.module.scss";
 import type { Auctions } from "@/data/auctions";
 import ActionBidSection from "./BidSection";
 import ActionTitle from "./ActionTitle";
-import Button from "@/components/ui/Button/Button";
+import Button from "@/components/ui/Button";
 import { useItemStore } from "@/store/useItemStore";
 
 interface ActionCardProp {

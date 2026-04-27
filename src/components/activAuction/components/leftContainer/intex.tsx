@@ -1,12 +1,10 @@
-import type { Auctions } from "@/data/auctions";
+import { useItemStore } from "@/store/useItemStore";
 import styles from "./index.module.scss";
 import Infoboxes from "./infoboxes";
 
-interface LeftContainerProps {
-  item: Auctions | null;
-}
+const LeftContainer = () => {
+  const item = useItemStore((state) => state.activeItem);
 
-const LeftContainer = ({ item }: LeftContainerProps) => {
   return (
     <div className={styles.left_container}>
       <div className={styles.image_container}>

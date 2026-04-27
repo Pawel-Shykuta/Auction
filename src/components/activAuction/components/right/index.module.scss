@@ -1,4 +1,30 @@
 .right_container {
-  width: 45%;
+  width: 48%;
   height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item_desc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  p {
+    width: fit-content;
+    padding: 4px 8px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    background-color: rgba(233, 231, 231, 0.801);
+    border-radius: 5px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 400;
+  }
 }
