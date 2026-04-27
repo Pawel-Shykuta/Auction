@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./itemPrice.module.scss";
 import { useItemStore } from "@/store/useItemStore";
 import { IoMdTime } from "react-icons/io";
-import Timer from "@/pages/home/components/auctions/components/timer";
+import Timer from "@/pages/home/components/auctions/components/Timer";
 
 export default function ItemPrice() {
   const [now, setNow] = useState(() => Date.now());
