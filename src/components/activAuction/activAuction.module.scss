@@ -61,6 +61,14 @@
   -ms-overflow-style: none;
 }
 
+@media (max-width: 768px) {
+  .content_container {
+    flex-direction: column;
+    padding: 30px;
+    gap: 40px;
+  }
+}
+
 @keyframes modalSlideIn {
   from {
     transform: scale(0.95) translateY(20px);

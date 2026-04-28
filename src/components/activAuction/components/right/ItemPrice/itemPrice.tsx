@@ -4,6 +4,24 @@ import { useItemStore } from "@/store/useItemStore";
 import { IoMdTime } from "react-icons/io";
 import Timer from "@/pages/home/components/auctions/components/Timer";
 
+function PriceContainer() {
+  const item = useItemStore((state) => state.activeItem);
+
+  return (
+    <div className={styles.price_container}>
+      <div className={styles.info_container}>
+        <p>Current Bid:</p>
+        <h1>${item?.currentBid.toLocaleString()}</h1>
+      </div>
+
+      <div className={styles.info_container}>
+        <p>{item?.totalBids} bids</p>
+        <p>Starting price: ${item?.startingBid.toLocaleString()}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function ItemPrice() {
   const [now, setNow] = useState(() => Date.now());
   const item = useItemStore((state) => state.activeItem);
@@ -18,17 +36,7 @@ export default function ItemPrice() {
 
   return (
     <div className={styles.item_price_time_container}>
-      <div className={styles.price_container}>
-        <div className={styles.info_container}>
-          <p>Current Bid:</p>
-          <h1>${item?.currentBid.toLocaleString()}</h1>
-        </div>
-
-        <div className={styles.info_container}>
-          <p>{item?.totalBids} bids</p>
-          <p>Starting price: ${item?.startingBid.toLocaleString()}</p>
-        </div>
-      </div>
+      <PriceContainer />
 
       <span className={styles.line}></span>
 

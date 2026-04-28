@@ -28,3 +28,9 @@
     font-weight: 400;
   }
 }
+
+@media (max-width: 768px) {
+  .right_container {
+    width: 100%;
+  }
+}

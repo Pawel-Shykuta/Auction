@@ -84,7 +84,7 @@
 
 .bid_history {
   width: 100%;
-  min-height: 120%;
+  min-height: 100%;
   display: flex;
 
   flex-direction: column;
@@ -139,5 +139,27 @@
         background-color: rgba(158, 157, 157, 0.384);
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .quick_bids {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .input_controls {
+    .input {
+      width: 65%;
+    }
+    .bid_BTN {
+      width: 35%;
+    }
+  }
+
+  .bid_history ul {
+    max-height: 80%;
+    overflow: auto;
   }
 }

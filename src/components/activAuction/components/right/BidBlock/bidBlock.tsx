@@ -16,6 +16,7 @@ function BidInput({ currentBid }: { currentBid: number }) {
         <Input
           type="text"
           placeholder={`$ ${(currentBid + 50).toLocaleString()}`}
+          className={styles.input}
           onChange={(e) => {
             const onlyDigits = e.target.value.replace(/[^\d]/g, "");
             setBidInput(onlyDigits);
@@ -23,7 +24,6 @@ function BidInput({ currentBid }: { currentBid: number }) {
           value={
             Number(bidInput) > 0 ? `$ ${Number(bidInput).toLocaleString()}` : ""
           }
-          className={styles.input}
         />
         <Button text="Bid" className={styles.bid_BTN} />
       </div>
@@ -53,6 +53,18 @@ function BidHistory() {
       <h1>Bids History</h1>
 
       <ul>
+        <li>
+          <span>
+            <GoPerson className={styles.icon} /> name
+          </span>
+          $3 200
+        </li>
+        <li>
+          <span>
+            <GoPerson className={styles.icon} /> name
+          </span>
+          $3 200
+        </li>
         <li>
           <span>
             <GoPerson className={styles.icon} /> name
