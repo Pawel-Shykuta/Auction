@@ -1,0 +1,78 @@
+.drop_dw_menu {
+  position: relative;
+  display: inline-block;
+
+  width: 30%;
+
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  justify-content: center;
+
+  cursor: pointer;
+
+  h1 {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .openMenu {
+    width: 98%;
+    height: 30px;
+
+    margin-left: 1%;
+    border: none;
+    border-radius: 4px;
+
+    background-color: rgba(226, 226, 226, 0.466);
+
+    color: rgb(73, 73, 73);
+    font-size: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+
+    cursor: pointer;
+  }
+}
+
+.drop_dw_list {
+  width: 98%;
+  margin-top: 4px;
+
+  position: absolute;
+  top: 100%;
+  left: 1%;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 5px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  border: 1px solid rgba(192, 192, 192, 0.438);
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+
+  li {
+    width: 100%;
+
+    cursor: pointer;
+
+    padding: 8px;
+    border-radius: 5px;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    &:hover {
+      background-color: rgba(238, 240, 243, 0.904);
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.browse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 20px;
+}
+
+.browse_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+
+  h1 {
+    font-size: 24px;
+  }
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(153, 153, 153);
+  }
+}

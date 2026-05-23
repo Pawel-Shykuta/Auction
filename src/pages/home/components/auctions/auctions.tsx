@@ -26,7 +26,7 @@ export const Auctions = () => {
   return (
     <section className={styles.auctions_container}>
       {filtredItems.length > 0 ? (
-        filtredItems.map((el) => <ActionCard el={el} now={now} />)
+        filtredItems.map((el) => <ActionCard key={el.id} el={el} now={now} />)
       ) : (
         <h1>There are currently no active auctions.</h1>
       )}

@@ -14,11 +14,7 @@ const ActionCard = ({ el, now }: ActionCardProp) => {
   const setActiveItem = useItemStore((state) => state.setActiveItem);
 
   return (
-    <div
-      key={Number(el.id)}
-      className={styles.auction_card}
-      onClick={() => setActiveItem(el)}
-    >
+    <div className={styles.auction_card} onClick={() => setActiveItem(el)}>
       <div className={styles.image_container}>
         <img src={el.image} alt="" />
       </div>

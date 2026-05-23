@@ -5,25 +5,35 @@ import Button from "@/components/ui/Button";
 import { useState } from "react";
 import { GoPerson } from "react-icons/go";
 
-function BidInput({ currentBid }: { currentBid: number }) {
-  const [bidInput, setBidInput] = useState("");
+function BidInput({
+  currentBid,
+  bidInput,
+  setBidInput,
+}: {
+  currentBid: number;
+  bidInput: string;
+  setBidInput: (value: string) => void;
+}) {
+  const MIN_STEP = 50;
+  const minRequiredBid = currentBid + MIN_STEP;
+  const formattedMinBid = `$ ${minRequiredBid.toLocaleString()}`;
+
+  const value = Number(bidInput) > 0 ? `$ ${bidInput}` : "";
 
   return (
     <div className={styles.bid_input}>
-      <label>Your bid (minimum ${(currentBid + 50).toLocaleString()})</label>
+      <label>Your bid (minimum {formattedMinBid})</label>
 
       <div className={styles.input_controls}>
         <Input
           type="text"
-          placeholder={`$ ${(currentBid + 50).toLocaleString()}`}
+          placeholder={formattedMinBid}
           className={styles.input}
           onChange={(e) => {
             const onlyDigits = e.target.value.replace(/[^\d]/g, "");
             setBidInput(onlyDigits);
           }}
-          value={
-            Number(bidInput) > 0 ? `$ ${Number(bidInput).toLocaleString()}` : ""
-          }
+          value={value}
         />
         <Button text="Bid" className={styles.bid_BTN} />
       </div>
@@ -31,7 +41,13 @@ function BidInput({ currentBid }: { currentBid: number }) {
   );
 }
 
-function QuickBids({ currentBid }: { currentBid: number }) {
+function QuickBids({
+  currentBid,
+  setBidInput,
+}: {
+  currentBid: number;
+  setBidInput: (value: string) => void;
+}) {
   const increments = [50, 150, 300, 550];
 
   return (
@@ -40,7 +56,12 @@ function QuickBids({ currentBid }: { currentBid: number }) {
 
       <ul className={styles.quick_bids}>
         {increments.map((inc) => (
-          <li key={inc}>$ {(currentBid + inc).toLocaleString()}</li>
+          <li
+            key={inc}
+            onClick={() => setBidInput((currentBid + inc).toString())}
+          >
+            $ {(currentBid + inc).toLocaleString()}
+          </li>
         ))}
       </ul>
     </div>
@@ -78,13 +99,17 @@ function BidHistory() {
 
 const BidBlock = () => {
   const item = useItemStore((state) => state.activeItem);
-
   const currentBid = item?.currentBid || 0;
+  const [bidInput, setBidInput] = useState("");
 
   return (
     <section className={styles.bid_block}>
-      <BidInput currentBid={currentBid} />
-      <QuickBids currentBid={currentBid} />
+      <BidInput
+        currentBid={currentBid}
+        bidInput={bidInput}
+        setBidInput={setBidInput}
+      />
+      <QuickBids currentBid={currentBid} setBidInput={setBidInput} />
       <BidHistory />
     </section>
   );
