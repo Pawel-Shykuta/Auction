@@ -8,7 +8,10 @@ const LeftContainer = () => {
   return (
     <div className={styles.left_container}>
       <div className={styles.image_container}>
-        <img src={item?.image} />
+        <img
+          src={item?.image || "/placeholder.png"}
+          alt={item?.title || "Auction item"}
+        />
       </div>
 
       <div className={styles.info_container}>

@@ -2,13 +2,20 @@ import styles from "./filterPanel.module.scss";
 
 import { IoMdOptions } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
+import { useState } from "react";
+import PriceRange from "@/components/priceRange/priceRange";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/Button";
-import { useState } from "react";
+
 import DropDW from "@/components/dropDW/dropDW";
+import { useAppStore } from "@/store/useAppStore";
 
 const SearchPanel = () => {
   const [filterOpen, setFilterOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const setFilter = useAppStore((state) => state.setFilter);
+  const setSortBy = useAppStore((state) => state.setSortBy);
 
   return (
     <div className={styles.Search_panel}>
@@ -18,6 +25,8 @@ const SearchPanel = () => {
           <Input
             placeholder="Search auctions..."
             className={styles.Search_input}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
@@ -35,13 +44,31 @@ const SearchPanel = () => {
       {filterOpen && (
         <div className={styles.filters_container}>
           <DropDW
-            categorys={["sssss", "aaaaaa", "dddddd", "ffffff"]}
+            categorys={[
+              "All",
+              "Watches",
+              "Technology",
+              "Art",
+              "Vehicles",
+              "Fashion",
+              "Jewelry",
+              "Photography",
+            ]}
             CategoryName={"Category"}
+            onClick={(el) => setFilter(el)}
           />
           <DropDW
-            categorys={["ssssss", "aaaaaa", "dddddd", "ffffff"]}
+            categorys={[
+              "Ending Soon",
+              "Price: Low to High",
+              "Price: High to Low",
+              "Most Recent",
+            ]}
             CategoryName={"Sort By"}
+            onClick={(el) => setSortBy(el)}
           />
+
+          <PriceRange />
         </div>
       )}
     </div>

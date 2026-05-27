@@ -7,13 +7,15 @@ import { GoChevronUp } from "react-icons/go";
 const DropDW = ({
   categorys,
   CategoryName,
+  onClick,
 }: {
   categorys: string[];
   CategoryName: string;
+  onClick?: (el: string) => void;
 }) => {
   const dropDownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [category, setCategory] = useState("ss");
+  const [category, setCategory] = useState(categorys[0]);
 
   useEffect(() => {
     const handelClickOutside = (e: MouseEvent) => {
@@ -32,6 +34,7 @@ const DropDW = ({
   const change = (el: string) => {
     setCategory(el);
     setIsOpen(false);
+    onClick?.(el);
   };
 
   return (

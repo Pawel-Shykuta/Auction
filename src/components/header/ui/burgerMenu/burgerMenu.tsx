@@ -1,8 +1,8 @@
 import styles from "./burgerMenu.module.scss";
-import { useHeader } from "../../../../context/HeaderContext";
+import { useHeaderStore } from "@/store/useHeaderStore";
 
 export default function BurgerMenu() {
-  const { headerIsOpen, changeHeaderIsOpen } = useHeader();
+  const { headerIsOpen, changeHeaderIsOpen } = useHeaderStore();
 
   return (
     <div

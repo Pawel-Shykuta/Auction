@@ -1,6 +1,6 @@
 import Header from "./components/header/header";
 import styles from "./activAuction.module.scss";
-import LeftContainer from "./components/leftContainer/intex";
+import LeftContainer from "./components/leftContainer";
 import RightContainer from "./components/right";
 
 const ActiveAuction = () => {

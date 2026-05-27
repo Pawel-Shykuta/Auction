@@ -8,7 +8,9 @@
   border-bottom: 2px solid #eaeaea;
   gap: 20px;
 
-  position: relative;
+  position: fixed;
+  background-color: white;
+
   z-index: 1;
 
   font-size: 16px;
@@ -23,6 +25,16 @@
 
     gap: 20px;
   }
+}
+
+.show {
+  transform: translateY(0);
+  transition: all 0.5s ease;
+}
+
+.hide {
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 450px) {
