@@ -1,8 +1,8 @@
 import styles from "./home.module.scss";
-import { Auctions } from "./components/auctions/auctions";
 import Boxes from "./components/boxes/boxes";
 import FilterPanel from "./components/filterPanel/filterPanel";
 import Description from "./components/description/description";
+import { Auctions } from "@/components/auctions/auctions";
 
 export default function Home() {
   return (

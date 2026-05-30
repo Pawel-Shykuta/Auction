@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./itemPrice.module.scss";
 import { useItemStore } from "@/store/useItemStore";
 import { IoMdTime } from "react-icons/io";
-import Timer from "@/pages/home/components/auctions/components/Timer";
+import Timer from "@/components/auctions/components/Timer";
 
 function PriceContainer() {
   const item = useItemStore((state) => state.activeItem);

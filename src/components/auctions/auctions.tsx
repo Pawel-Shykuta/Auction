@@ -4,6 +4,7 @@ import { auctions } from "@/data/auctions";
 import { useEffect, useMemo, useState } from "react";
 import ActionCard from "./components/ActionCard";
 import { useAppStore } from "@/store/useAppStore";
+import { useHeaderStore } from "@/store/useHeaderStore";
 
 export const Auctions = () => {
   const [now, setNow] = useState(() => Date.now());
@@ -11,6 +12,7 @@ export const Auctions = () => {
   const sortBy = useAppStore((state) => state.sortBy);
   const priceMin = useAppStore((state) => state.priceMin);
   const priceMax = useAppStore((state) => state.priceMax);
+  const searchingText = useHeaderStore((state) => state.searchingText);
 
   const filtredItems = useMemo(() => {
     if (!filter || filter === "All") return auctions;
@@ -47,6 +49,14 @@ export const Auctions = () => {
     );
   }, [sortedItems, priceMin, priceMax]);
 
+  const searchedItems = useMemo(() => {
+    if (!searchingText) return sortedPrices;
+
+    return sortedPrices.filter((el) =>
+      el.title.toLowerCase().includes(searchingText.toLowerCase()),
+    );
+  }, [sortedPrices, searchingText]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setNow(Date.now());
@@ -57,8 +67,8 @@ export const Auctions = () => {
 
   return (
     <section className={styles.auctions_container}>
-      {sortedPrices.length > 0 ? (
-        sortedPrices.map((el) => <ActionCard key={el.id} el={el} now={now} />)
+      {searchedItems.length > 0 ? (
+        searchedItems.map((el) => <ActionCard key={el.id} el={el} now={now} />)
       ) : (
         <h1>There are currently no active auctions.</h1>
       )}

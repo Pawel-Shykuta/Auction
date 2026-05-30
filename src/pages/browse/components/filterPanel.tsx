@@ -9,11 +9,12 @@ import Button from "@/components/ui/Button";
 
 import DropDW from "@/components/dropDW/dropDW";
 import { useAppStore } from "@/store/useAppStore";
+import { useHeaderStore } from "@/store/useHeaderStore";
 
 const SearchPanel = () => {
   const [filterOpen, setFilterOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-
+  const searchingText = useHeaderStore((state) => state.searchingText);
+  const setSearchingText = useHeaderStore((state) => state.setSearchingText);
   const setFilter = useAppStore((state) => state.setFilter);
   const setSortBy = useAppStore((state) => state.setSortBy);
 
@@ -25,8 +26,8 @@ const SearchPanel = () => {
           <Input
             placeholder="Search auctions..."
             className={styles.Search_input}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchingText}
+            onChange={(e) => setSearchingText(e.target.value)}
           />
         </div>
 
