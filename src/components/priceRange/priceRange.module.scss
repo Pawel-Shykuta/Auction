@@ -45,3 +45,47 @@
     }
   }
 }
+
+@media (max-width: 450px) {
+  .price_range {
+    width: 100%;
+
+    gap: 10px;
+
+    h2 {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .slider_container {
+      :global {
+        .rc-slider-track {
+          background-color: #130203;
+          height: 16px;
+        }
+        .rc-slider-rail {
+          background-color: #e4e4e4;
+          height: 16px;
+          border-radius: 3px;
+        }
+
+        .rc-slider-handle {
+          width: 20px;
+          height: 20px;
+          margin-top: -2px;
+          background-color: #ffffff;
+          border: 2px solid #000000;
+          opacity: 1;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          cursor: grab;
+
+          &:active {
+            border-color: #e04b4f;
+            box-shadow: 0 0 8px rgba(255, 90, 95, 0.5);
+            cursor: grabbing;
+          }
+        }
+      }
+    }
+  }
+}

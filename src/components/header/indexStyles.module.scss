@@ -10,8 +10,9 @@
 
   position: fixed;
   background-color: white;
-
-  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease;
+  z-index: 999;
 
   font-size: 16px;
 
@@ -28,13 +29,13 @@
 }
 
 .show {
-  transform: translateY(0);
-  transition: all 0.5s ease;
+  top: 0;
+  transition: top 0.5s ease;
 }
 
 .hide {
-  transform: translateY(-100%);
-  transition: all 0.3s ease;
+  top: -70px;
+  transition: top 0.3s ease;
 }
 
 @media (max-width: 450px) {
