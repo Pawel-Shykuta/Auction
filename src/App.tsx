@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header";
+import Footer from "./components/footer/footer";
 import Home from "./pages/home/home";
 import Browse from "./pages/browse/browse";
 import ActiveAuction from "./components/activAuction/activAuction";
@@ -19,6 +20,7 @@ function App() {
         </Routes>
         {activeItem && <ActiveAuction />}
       </div>
+      <Footer />
     </main>
   );
 }
