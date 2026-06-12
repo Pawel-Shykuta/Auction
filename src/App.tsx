@@ -6,6 +6,7 @@ import Home from "./pages/home/home";
 import Browse from "./pages/browse/browse";
 import ActiveAuction from "./components/activAuction/activAuction";
 import { useItemStore } from "./store/useItemStore";
+import { HowItWorks } from "./pages/howItWorks/howItWorks";
 
 function App() {
   const activeItem = useItemStore((state) => state.activeItem);
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Browse" element={<Browse />} />
+          <Route path="/HowItWorks" element={<HowItWorks />} />
         </Routes>
         {activeItem && <ActiveAuction />}
       </div>

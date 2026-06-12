@@ -1,22 +1,37 @@
 import styles from "./icons.module.scss";
 
 import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+
 import { BiBell } from "react-icons/bi";
 import { useState } from "react";
+import { useHeaderStore } from "@/store/useHeaderStore";
 
 export default function Icons() {
-  // const [newMassages, setNewMassages] = useState([]);s
+  // const [newMassages, setNewMassages] = useState([]);
 
   const [massagesWindowOpen, setMassagesWindowOpen] = useState(false);
-  const [onlyLickeds, setOnlyLickeds] = useState(false);
+
+  const cahngeLikedMenuOpen = useHeaderStore(
+    (state) => state.changeLikedMenuOpen,
+  );
+  const likedMenuOpen = useHeaderStore((state) => state.likedMenuOpen);
 
   return (
     <div className={styles.iconsContainer}>
       <span className={styles.iconsWrapper}>
-        <FaRegHeart
-          className={styles.heartIcon}
-          onClick={() => setOnlyLickeds(!onlyLickeds)}
-        />
+        {likedMenuOpen ? (
+          <FaHeart
+            className={styles.heartIcon}
+            onClick={() => cahngeLikedMenuOpen()}
+          />
+        ) : (
+          <FaRegHeart
+            className={styles.heartIcon}
+            onClick={() => cahngeLikedMenuOpen()}
+          />
+        )}
+
         <p>Favorites</p>
       </span>
 

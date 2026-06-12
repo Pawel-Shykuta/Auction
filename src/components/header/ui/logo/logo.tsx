@@ -6,7 +6,13 @@ import { RiAuctionLine } from "react-icons/ri";
 export default function Logo() {
   const navigate = useNavigate();
   return (
-    <div className={Styles.logo_Wrapper} onClick={() => navigate("/")}>
+    <div
+      className={Styles.logo_Wrapper}
+      onClick={() => {
+        navigate("/");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }}
+    >
       <RiAuctionLine className={Styles.logo_Icon} />
 
       <p>AuctionPro</p>

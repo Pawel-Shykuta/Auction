@@ -76,7 +76,6 @@ const Links = () => {
         <ul className={styles.social_media_Links}>
           {SOCIAL_LINKS.map((el) => (
             <li key={el.id}>
-              {/* Для внешних сайтов оставляем обычный <a> без navigate */}
               <a
                 href={el.url}
                 target="_blank"
@@ -121,7 +120,6 @@ const Links = () => {
               <div className={styles.contact_title}>{el.icon}</div>
               <div>
                 <strong>{el.title}</strong>
-                {/* Для mailto: и tel: используем стандартное поведение <a> */}
                 {el.href.startsWith("http") || el.href.startsWith("/") ? (
                   <a
                     href={el.href}

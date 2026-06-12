@@ -1,0 +1,235 @@
+// Переменные
+$primary-color: #2563eb;
+$primary-hover: #1d4ed8;
+$text-dark: #1e293b;
+$text-muted: #64748b;
+$bg-light: #f8fafc;
+$white: #ffffff;
+$transition-smooth: all 0.3s ease;
+
+.wrapper {
+  padding: 5rem 1.5rem;
+  background-color: $bg-light;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $text-dark;
+  margin-bottom: 1rem;
+  letter-spacing: -0.05em;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: $text-muted;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.card {
+  background-color: $white;
+  padding: 2.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: $transition-smooth;
+  position: relative;
+  border: 1px solid #e2e8f0;
+
+  // Эффект ховера только для десктопов, чтобы на мобилках не залипал клик
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+  }
+}
+
+.iconWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background-color: rgba($primary-color, 0.1);
+  color: $primary-color;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
+.stepNumber {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: $primary-color;
+  color: $white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $white;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $text-dark;
+  margin-bottom: 0.75rem;
+}
+
+.cardText {
+  font-size: 0.95rem;
+  color: $text-muted;
+  line-height: 1.5;
+}
+
+.cta {
+  text-align: center;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: $white;
+  padding: 3.5rem 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.button {
+  background-color: $primary-color;
+  color: $white;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: $transition-smooth;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: $primary-hover;
+      transform: scale(1.02);
+    }
+  }
+}
+
+/* ==========================================================================
+   МЕДИА-ЗАПРОСЫ ДЛЯ СМАРТФОНОВ И ПЛАНШЕТОВ
+   ========================================================================== */
+
+// 1. Планшеты и небольшие экраны
+@media (max-width: 1024px) {
+  .wrapper {
+    padding: 4rem 2rem;
+  }
+
+  .grid {
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+}
+
+// 2. Мобильные телефоны (основная оптимизация)
+@media (max-width: 640px) {
+  .wrapper {
+    padding: 3rem 1rem; // Меньше отступы по бокам, чтобы экономить место
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .title {
+    font-size: 1.85rem; // Заголовок не переносится на 4 строчки
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .grid {
+    grid-template-columns: 1fr; // Строго в один ряд
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .card {
+    padding: 1.75rem 1.25rem; // Компактные внутренние отступы карточки
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Центрируем контент для красивого мобильного вида
+    text-align: center;
+  }
+
+  .iconWrapper {
+    margin-bottom: 1rem;
+  }
+
+  .cardTitle {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cardText {
+    font-size: 0.9rem;
+  }
+
+  .cta {
+    padding: 2.5rem 1.25rem;
+    border-radius: 1rem;
+
+    h2 {
+      font-size: 1.35rem;
+      line-height: 1.3;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  .button {
+    width: 100%; // Кнопка во всю ширину — удобно нажимать пальцем
+    padding: 1rem; // Чуть увеличили высоту для тач-зоны
+    font-size: 1.05rem;
+  }
+}
