@@ -1,3 +1,9 @@
+interface bidHistory {
+  id: number;
+  name: string;
+  price: string;
+}
+
 export interface Auctions {
   id: string;
   title: string;
@@ -10,6 +16,7 @@ export interface Auctions {
   category: string;
   seller: string;
   condition: string;
+  bidHistory: bidHistory[];
 }
 
 export const auctions: Auctions[] = [
@@ -28,6 +35,23 @@ export const auctions: Auctions[] = [
     category: "Watches",
     seller: "LuxuryTime",
     condition: "Excellent",
+    bidHistory: [
+      {
+        id: 3,
+        name: "User 3",
+        price: "3900",
+      },
+      {
+        id: 2,
+        name: "User 2",
+        price: "2900",
+      },
+      {
+        id: 1,
+        name: "User 1",
+        price: "1900",
+      },
+    ],
   },
 
   // 2. Винтажная камера Leica
@@ -45,6 +69,23 @@ export const auctions: Auctions[] = [
     category: "Photography",
     seller: "VintageGear",
     condition: "Very Good",
+    bidHistory: [
+      {
+        id: 3,
+        name: "User 3",
+        price: "3900",
+      },
+      {
+        id: 2,
+        name: "User 2",
+        price: "2900",
+      },
+      {
+        id: 1,
+        name: "User 1",
+        price: "1900",
+      },
+    ],
   },
 
   // 3. Ferrari 488 GTB
@@ -62,6 +103,23 @@ export const auctions: Auctions[] = [
     category: "Vehicles",
     seller: "ExoticCars",
     condition: "Like New",
+    bidHistory: [
+      {
+        id: 3,
+        name: "User 3",
+        price: "3900",
+      },
+      {
+        id: 2,
+        name: "User 2",
+        price: "2900",
+      },
+      {
+        id: 1,
+        name: "User 1",
+        price: "1900",
+      },
+    ],
   },
 
   // 4. MacBook Pro
@@ -79,6 +137,23 @@ export const auctions: Auctions[] = [
     category: "Technology",
     seller: "TechDeals",
     condition: "New",
+    bidHistory: [
+      {
+        id: 3,
+        name: "User 3",
+        price: "3900",
+      },
+      {
+        id: 2,
+        name: "User 2",
+        price: "2900",
+      },
+      {
+        id: 1,
+        name: "User 1",
+        price: "1900",
+      },
+    ],
   },
 
   // 5. Louis Vuitton сумка
@@ -96,6 +171,23 @@ export const auctions: Auctions[] = [
     category: "Fashion",
     seller: "LuxuryBags",
     condition: "Excellent",
+    bidHistory: [
+      {
+        id: 3,
+        name: "User 3",
+        price: "3900",
+      },
+      {
+        id: 2,
+        name: "User 2",
+        price: "2900",
+      },
+      {
+        id: 1,
+        name: "User 1",
+        price: "1900",
+      },
+    ],
   },
 
   // 6. Картина маслом
@@ -113,6 +205,23 @@ export const auctions: Auctions[] = [
     category: "Art",
     seller: "ModernGallery",
     condition: "New",
+    bidHistory: [
+      {
+        id: 3,
+        name: "User 3",
+        price: "3900",
+      },
+      {
+        id: 2,
+        name: "User 2",
+        price: "2900",
+      },
+      {
+        id: 1,
+        name: "User 1",
+        price: "1900",
+      },
+    ],
   },
 
   // 7. Бриллиантовое кольцо
@@ -130,6 +239,23 @@ export const auctions: Auctions[] = [
     category: "Jewelry",
     seller: "DiamondElite",
     condition: "New",
+    bidHistory: [
+      {
+        id: 3,
+        name: "User 3",
+        price: "3900",
+      },
+      {
+        id: 2,
+        name: "User 2",
+        price: "2900",
+      },
+      {
+        id: 1,
+        name: "User 1",
+        price: "1900",
+      },
+    ],
   },
 
   // 8. PlayStation 5 Pro
@@ -147,5 +273,22 @@ export const auctions: Auctions[] = [
     category: "Technology",
     seller: "GamersParadise",
     condition: "New",
+    bidHistory: [
+      {
+        id: 3,
+        name: "User 3",
+        price: "3900",
+      },
+      {
+        id: 2,
+        name: "User 2",
+        price: "2900",
+      },
+      {
+        id: 1,
+        name: "User 1",
+        price: "1900",
+      },
+    ],
   },
 ];

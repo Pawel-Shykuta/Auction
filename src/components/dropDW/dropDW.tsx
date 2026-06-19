@@ -53,8 +53,8 @@ const DropDW = ({
 
       {isOpen && (
         <ul className={styles.drop_dw_list}>
-          {categorys.map((el, i) => (
-            <li key={i} onClick={() => change(el)}>
+          {categorys.map((el) => (
+            <li key={el} onClick={() => change(el)}>
               {el}
             </li>
           ))}

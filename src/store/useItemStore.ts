@@ -9,6 +9,7 @@ interface ItemState {
   clearActiveItem: () => void;
   addLiked: (el: Auctions) => void;
   removeLiked: (id: string) => void;
+  updateActiveItem: (el: Auctions) => void;
 }
 
 export const useItemStore = create<ItemState>()((set) => ({
@@ -22,4 +23,5 @@ export const useItemStore = create<ItemState>()((set) => ({
 
   setActiveItem: (el) => set({ activeItem: el }),
   clearActiveItem: () => set({ activeItem: null }),
+  updateActiveItem: (el) => set({ activeItem: el }),
 }));

@@ -15,8 +15,8 @@ export default function List() {
 
   return (
     <ul className={styles.list_Wrapper}>
-      {listArr.map((item, index) => (
-        <li key={index} onClick={() => changePage(item)}>
+      {listArr.map((item) => (
+        <li key={item} onClick={() => changePage(item)}>
           {item}
         </li>
       ))}

@@ -8,8 +8,6 @@ import { useState } from "react";
 import { useHeaderStore } from "@/store/useHeaderStore";
 
 export default function Icons() {
-  // const [newMassages, setNewMassages] = useState([]);
-
   const [massagesWindowOpen, setMassagesWindowOpen] = useState(false);
 
   const cahngeLikedMenuOpen = useHeaderStore(

@@ -14,8 +14,8 @@ export default function Boxes() {
 
   return (
     <section className={styles.boxes_container}>
-      {arr.map((item, i) => (
-        <div key={i} className={styles.box_item}>
+      {arr.map((item) => (
+        <div key={item.title} className={styles.box_item}>
           <h1>{item.num}</h1>
           <p>{item.title}</p>
         </div>

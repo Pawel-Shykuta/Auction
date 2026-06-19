@@ -1,4 +1,5 @@
 import { useItemStore } from "@/store/useItemStore";
+import { useAuctionsStore } from "@/store/useAuctionsStore";
 import styles from "./bidBlock.module.scss";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/Button";
@@ -19,6 +20,20 @@ function BidInput({
   const formattedMinBid = `$ ${minRequiredBid.toLocaleString()}`;
 
   const value = Number(bidInput) > 0 ? `$ ${bidInput}` : "";
+  const item = useItemStore((state) => state.activeItem);
+  const updateActiveItem = useItemStore((state) => state.updateActiveItem);
+  const updateBid = useAuctionsStore((state) => state.updateBid);
+
+  const bid = () => {
+    const bidAmount = Number(bidInput);
+    if (!item?.id || bidAmount <= 0 || bidAmount <= currentBid) return;
+
+    const updatedAuction = updateBid(item.id, bidAmount);
+    if (updatedAuction) {
+      updateActiveItem(updatedAuction);
+      setBidInput("");
+    }
+  };
 
   return (
     <div className={styles.bid_input}>
@@ -35,7 +50,7 @@ function BidInput({
           }}
           value={value}
         />
-        <Button text="Bid" className={styles.bid_BTN} />
+        <Button text="Bid" className={styles.bid_BTN} onClick={bid} />
       </div>
     </div>
   );
@@ -69,29 +84,21 @@ function QuickBids({
 }
 
 function BidHistory() {
+  const item = useItemStore((state) => state.activeItem);
+
   return (
     <div className={styles.bid_history}>
       <h1>Bids History</h1>
 
       <ul>
-        <li>
-          <span>
-            <GoPerson className={styles.icon} /> name
-          </span>
-          $3 200
-        </li>
-        <li>
-          <span>
-            <GoPerson className={styles.icon} /> name
-          </span>
-          $3 200
-        </li>
-        <li>
-          <span>
-            <GoPerson className={styles.icon} /> name
-          </span>
-          $3 200
-        </li>
+        {item?.bidHistory.map((el) => (
+          <li key={el.id}>
+            <span>
+              <GoPerson className={styles.icon} /> {el.name}
+            </span>
+            ${el.price}
+          </li>
+        ))}
       </ul>
     </div>
   );
