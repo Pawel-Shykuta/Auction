@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Auctions, bidHistory } from "@/data/auctions";
+import type { Auctions } from "@/data/auctions";
 import { auctions as initialAuctions } from "@/data/auctions";
 
 interface AuctionsState {
@@ -8,7 +8,7 @@ interface AuctionsState {
   resetAuctions: () => void;
 }
 
-export const useAuctionsStore = create<AuctionsState>()((set, get) => ({
+export const useAuctionsStore = create<AuctionsState>()((set) => ({
   auctions: JSON.parse(JSON.stringify(initialAuctions)),
 
   updateBid: (id, bid, bidderName = "Me") => {
