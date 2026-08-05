@@ -50,7 +50,11 @@ function BidInput({
           }}
           value={value}
         />
-        <Button text="Bid" className={styles.bid_BTN} onClick={bid} />
+        <Button
+          text="Bid"
+          className={`${styles.bid_BTN} ${Number(bidInput) < minRequiredBid ? styles.bid_disabled : ""}`}
+          onClick={bid}
+        />
       </div>
     </div>
   );

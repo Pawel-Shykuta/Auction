@@ -7,9 +7,21 @@ import Browse from "./pages/browse/browse";
 import ActiveAuction from "./components/activAuction/activAuction";
 import { useItemStore } from "./store/useItemStore";
 import { HowItWorks } from "./pages/howItWorks/howItWorks";
+import { useEffect } from "react";
+import { useHeaderStore } from "./store/useHeaderStore";
 
 function App() {
   const activeItem = useItemStore((state) => state.activeItem);
+
+  const { headerIsOpen } = useHeaderStore();
+
+  useEffect(() => {
+    document.body.style.overflow = headerIsOpen ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [headerIsOpen]);
 
   return (
     <main>

@@ -8,6 +8,7 @@ import BurgerMenu from "./ui/burgerMenu/burgerMenu";
 import LogoForPhones from "./ui/logo/logoForPhones";
 import { useHeaderStore } from "@/store/useHeaderStore";
 import { useEffect, useState } from "react";
+import Balance from "./ui/balance/balance";
 
 export default function Header() {
   const { headerIsOpen } = useHeaderStore();
@@ -45,6 +46,7 @@ export default function Header() {
         <List />
         {innerWidth > 450 && <SearchPanel />}
         <Icons />
+        <Balance />
       </div>
       <BurgerMenu />
     </header>

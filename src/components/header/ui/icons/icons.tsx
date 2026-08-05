@@ -4,13 +4,13 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 
 import { BiBell } from "react-icons/bi";
-import { useState } from "react";
 import { useHeaderStore } from "@/store/useHeaderStore";
+import MessageMenu from "../messageMenu/messageMenu";
 
 export default function Icons() {
-  const [massagesWindowOpen, setMassagesWindowOpen] = useState(false);
+  const { changeShowMessage, showMessage } = useHeaderStore();
 
-  const cahngeLikedMenuOpen = useHeaderStore(
+  const changeLikedMenuOpen = useHeaderStore(
     (state) => state.changeLikedMenuOpen,
   );
   const likedMenuOpen = useHeaderStore((state) => state.likedMenuOpen);
@@ -21,12 +21,12 @@ export default function Icons() {
         {likedMenuOpen ? (
           <FaHeart
             className={styles.heartIcon}
-            onClick={() => cahngeLikedMenuOpen()}
+            onClick={() => changeLikedMenuOpen()}
           />
         ) : (
           <FaRegHeart
             className={styles.heartIcon}
-            onClick={() => cahngeLikedMenuOpen()}
+            onClick={() => changeLikedMenuOpen()}
           />
         )}
 
@@ -36,9 +36,10 @@ export default function Icons() {
       <span className={styles.iconsWrapper}>
         <BiBell
           className={styles.bellIcon}
-          onClick={() => setMassagesWindowOpen(!massagesWindowOpen)}
+          onClick={() => changeShowMessage()}
         />
         <p>Notifications</p>
+        {showMessage && <MessageMenu />}
       </span>
     </div>
   );
