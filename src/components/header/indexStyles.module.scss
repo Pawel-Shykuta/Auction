@@ -56,7 +56,7 @@
     z-index: 9999;
 
     flex-direction: column;
-    padding-top: 70%;
+    padding-top: 78%;
     padding-left: 20px;
 
     align-items: center;
@@ -66,16 +66,39 @@
   .nav_container.open {
     right: 0;
   }
+
+  .balanceCon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+    font-size: 7px;
+
+    span {
+      display: inline-block;
+      color: rgb(18, 126, 41);
+    }
+  }
 }
 
 @media (max-width: 380px) {
   .nav_container {
-    padding-top: 80%;
+    padding-top: 90%;
   }
 }
 
 @media (max-width: 320px) {
   .nav_container {
-    padding-top: 90%;
+    padding-top: 100%;
+  }
+
+  .balanceCon {
+    font-size: 5px;
+
+    span {
+      display: inline-block;
+      color: rgb(18, 126, 41);
+    }
   }
 }

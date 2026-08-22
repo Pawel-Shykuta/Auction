@@ -5,6 +5,7 @@ import Input from "@/components/ui/input";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
 import { GoPerson } from "react-icons/go";
+import { useBalanceStore } from "@/store/useBalanceStore";
 
 function BidInput({
   currentBid,
@@ -24,9 +25,16 @@ function BidInput({
   const updateActiveItem = useItemStore((state) => state.updateActiveItem);
   const updateBid = useAuctionsStore((state) => state.updateBid);
 
+  const { payment } = useBalanceStore();
+
   const bid = () => {
     const bidAmount = Number(bidInput);
+
     if (!item?.id || bidAmount <= 0 || bidAmount <= currentBid) return;
+
+    const paymentSuccessful = payment(bidAmount);
+
+    if (!paymentSuccessful) return;
 
     const updatedAuction = updateBid(item.id, bidAmount);
     if (updatedAuction) {

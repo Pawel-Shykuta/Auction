@@ -6,7 +6,7 @@ interface BalanceState {
 
   changePaymentAmount: (sum: number) => void;
   addBalance: () => void;
-  payment: () => void;
+  payment: (amount: number) => boolean;
 }
 
 export const useBalanceStore = create<BalanceState>()((set, get) => ({
@@ -17,12 +17,15 @@ export const useBalanceStore = create<BalanceState>()((set, get) => ({
 
   changePaymentAmount: (sum: number) => set({ paymentAmount: sum }),
 
-  payment: () => {
-    const { balance, paymentAmount } = get();
-    if (balance >= paymentAmount) {
-      set({ balance: balance - paymentAmount });
-    } else {
+  payment: (amount: number) => {
+    const { balance } = get();
+
+    if (balance < amount) {
       alert("Not enough funds on the balance!!");
+      return false;
     }
+    set({ balance: balance - amount });
+
+    return true;
   },
 }));
