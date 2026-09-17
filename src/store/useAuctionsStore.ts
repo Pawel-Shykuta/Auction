@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import type { Auctions } from "@/data/auctions";
-import { auctions as initialAuctions } from "@/data/auctions";
+import type { Auctions } from "@/entities/auction/auction.types";
+import { auctions as initialAuctions } from "@/entities/auction/auction.data";
 import { useBalanceStore } from "@/store/useBalanceStore";
 
 const MIN_BID_STEP = 50;
@@ -14,11 +14,7 @@ export type PlaceBidResult =
 
 interface AuctionsState {
   auctions: Auctions[];
-  placeBid: (
-    id: string,
-    bid: number,
-    bidderName?: string,
-  ) => PlaceBidResult;
+  placeBid: (id: string, bid: number, bidderName?: string) => PlaceBidResult;
   resetAuctions: () => void;
 }
 

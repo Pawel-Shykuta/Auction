@@ -1,23 +1,4 @@
-interface bidHistory {
-  id: number;
-  name: string;
-  price: string;
-}
-
-export interface Auctions {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  currentBid: number;
-  startingBid: number;
-  totalBids: number;
-  endTime: Date | string | number;
-  category: string;
-  seller: string;
-  condition: string;
-  bidHistory: bidHistory[];
-}
+import type { Auctions } from "@/entities/auction/auction.types";
 
 export const auctions: Auctions[] = [
   // 1. Роскошные часы Rolex

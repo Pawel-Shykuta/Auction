@@ -1,5 +1,5 @@
 import styles from "../auctions.module.scss";
-import type { Auctions } from "@/data/auctions";
+import type { Auctions } from "@/entities/auction/auction.types";
 import { useItemStore } from "@/store/useItemStore";
 import ActionBidSection from "./BidSection";
 import ActionTitle from "./ActionTitle";
