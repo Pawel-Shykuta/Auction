@@ -2,21 +2,23 @@ import { useAppStore } from "@/store/useAppStore";
 import { useHeaderStore } from "@/store/useHeaderStore";
 import { useItemStore } from "@/store/useItemStore";
 import { useMemo } from "react";
-import { auctions } from "@/data/auctions";
+
+import { useAuctionsStore } from "@/store/useAuctionsStore";
 
 export const useFilteredAuctions = () => {
+  const auctions = useAuctionsStore((state) => state.auctions);
   const filter = useAppStore((state) => state.filter);
   const sortBy = useAppStore((state) => state.sortBy);
   const priceMin = useAppStore((state) => state.priceMin);
   const priceMax = useAppStore((state) => state.priceMax);
   const searchingText = useHeaderStore((state) => state.searchingText);
-  const liked = useItemStore((state) => state.liked);
+  const likedIds = useItemStore((state) => state.likedIds);
   const likedMenuOpen = useHeaderStore((state) => state.likedMenuOpen);
 
   const filtredItems = useMemo(() => {
     if (!filter || filter === "All") return auctions;
     return auctions.filter((el) => el.category === filter);
-  }, [filter]);
+  }, [auctions, filter]);
 
   const sortedItems = useMemo(() => {
     const itemsCopy = [...filtredItems];
@@ -32,7 +34,9 @@ export const useFilteredAuctions = () => {
     }
 
     if (sortBy === "Ending Soon") {
-      return itemsCopy.sort((a, b) => Number(a.endTime) - Number(b.endTime));
+      return itemsCopy.sort(
+        (a, b) => new Date(a.endTime).getTime() - new Date(b.endTime).getTime(),
+      );
     }
 
     return itemsCopy;
@@ -56,9 +60,14 @@ export const useFilteredAuctions = () => {
     );
   }, [sortedPrices, searchingText]);
 
+  const likedItems = useMemo(
+    () => auctions.filter((auction) => likedIds.includes(auction.id)),
+    [auctions, likedIds],
+  );
+
   const visibleItems = useMemo(() => {
-    return likedMenuOpen ? liked : searchedItems;
-  }, [likedMenuOpen, liked, searchedItems]);
+    return likedMenuOpen ? likedItems : searchedItems;
+  }, [likedMenuOpen, likedItems, searchedItems]);
 
   return visibleItems;
 };

@@ -15,15 +15,13 @@ interface ActionCardProp {
 }
 
 const ActionCard = memo(({ el, now }: ActionCardProp) => {
-  const isLiked = useItemStore((state) =>
-    state.liked.some((item) => item.id === el.id),
-  );
+  const isLiked = useItemStore((state) => state.likedIds.includes(el.id));
 
-  const { addLiked, removeLiked, setActiveItem } = useItemStore(
+  const { addLiked, removeLiked, setActiveItemId } = useItemStore(
     useShallow((state) => ({
       addLiked: state.addLiked,
       removeLiked: state.removeLiked,
-      setActiveItem: state.setActiveItem,
+      setActiveItemId: state.setActiveItemId,
     })),
   );
 
@@ -34,12 +32,12 @@ const ActionCard = memo(({ el, now }: ActionCardProp) => {
     if (isLiked) {
       removeLiked(el.id);
     } else {
-      addLiked(el);
+      addLiked(el.id);
     }
   };
 
   return (
-    <div className={styles.auction_card} onClick={() => setActiveItem(el)}>
+    <div className={styles.auction_card} onClick={() => setActiveItemId(el.id)}>
       <div className={styles.image_container}>
         <div className={styles.category_container}>
           <span>{el.category}</span>

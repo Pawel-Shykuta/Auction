@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $color-bg-main: #ffffff;
 $color-bg-unread: #f8fafc;
 $color-bg-badge: #e2e8f0;
@@ -78,7 +80,7 @@ $padding-y: 14px;
     cursor: pointer;
 
     &:hover {
-      background-color: mix($color-bg-main, $color-border, 50%);
+      background-color: color.mix($color-bg-main, $color-border, 50%);
     }
 
     &--unread {

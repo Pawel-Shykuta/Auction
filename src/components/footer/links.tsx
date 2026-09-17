@@ -14,12 +14,17 @@ const Links = () => {
     { id: "inst", icon: <CiInstagram />, url: "https://instagram.com" },
   ];
 
+  // const QUICK_LINKS = [
+  //   { text: "Browse Auctions", url: "/Browse" },
+  //   { text: "How It Works", url: "/how-it-works" },
+  //   { text: "Sell an Item", url: "/sell" },
+  //   { text: "My Bids", url: "/profile/bids" },
+  //   { text: "My Sales", url: "/profile/sales" },
+  // ];
+
   const QUICK_LINKS = [
-    { text: "Browse Auctions", url: "/Browse" },
+    { text: "Browse Auctions", url: "/browse" },
     { text: "How It Works", url: "/how-it-works" },
-    { text: "Sell an Item", url: "/sell" },
-    { text: "My Bids", url: "/profile/bids" },
-    { text: "My Sales", url: "/profile/sales" },
   ];
 
   const SUPPORT_LINKS = [

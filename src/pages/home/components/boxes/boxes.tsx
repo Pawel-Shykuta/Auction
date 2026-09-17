@@ -1,7 +1,8 @@
-import { auctions } from "@/data/auctions";
+import { useAuctionsStore } from "@/store/useAuctionsStore";
 import styles from "./boxes.module.scss";
 
 export default function Boxes() {
+  const auctions = useAuctionsStore((state) => state.auctions);
   const arr = [
     { title: "Active Auctions", num: auctions.length },
     {
