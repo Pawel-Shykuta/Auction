@@ -1,6 +1,22 @@
+import { useMessageStore } from "@/store/useMessageStore";
 import styles from "./messageMenu.module.scss";
+import { useItemStore } from "@/store/useItemStore";
+import { auctions } from "@/data/auctions";
+import { useHeaderStore } from "@/store/useHeaderStore";
 
 const MessageMenu = () => {
+  const { messages } = useMessageStore();
+  const { setActiveItem } = useItemStore();
+  const { closeShowMessage } = useHeaderStore();
+
+  const showItem = (e: React.MouseEvent, el: number) => {
+    e.stopPropagation();
+    const item = auctions.find((item) => Number(item.id) === el);
+
+    setActiveItem(item ?? null);
+    closeShowMessage();
+  };
+
   return (
     <ul className={styles.MessageWrapper}>
       <div className={styles.Messege_Header}>
@@ -9,10 +25,16 @@ const MessageMenu = () => {
       </div>
 
       <div className={styles.list}>
-        <li className={styles.item}>
-          <span className={styles.item_title}>Auction ending in 30 min</span>
-          <span className={styles.item_time}>2 hours ago</span>
-        </li>
+        {messages.map((el) => (
+          <li
+            className={styles.item}
+            key={el.id}
+            onClick={(e) => showItem(e, el.auctionId)}
+          >
+            <span className={styles.item_title}>{el.Name}</span>
+            <span className={styles.item_time}>{el.title}</span>
+          </li>
+        ))}
       </div>
     </ul>
   );

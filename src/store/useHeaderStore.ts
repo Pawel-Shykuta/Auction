@@ -10,7 +10,9 @@ interface HeaderState {
   setHeaderIsOpen: (el: boolean) => void;
   changeHeaderIsOpen: () => void;
   changeLikedMenuOpen: () => void;
+
   changeShowMessage: () => void;
+  closeShowMessage: () => void;
 }
 
 export const useHeaderStore = create<HeaderState>()((set) => ({
@@ -29,4 +31,5 @@ export const useHeaderStore = create<HeaderState>()((set) => ({
     set((state) => ({ likedMenuOpen: !state.likedMenuOpen })),
   changeShowMessage: () =>
     set((state) => ({ showMessage: !state.showMessage })),
+  closeShowMessage: () => set({ showMessage: false }),
 }));

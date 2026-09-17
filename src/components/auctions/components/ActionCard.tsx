@@ -54,7 +54,7 @@ const ActionCard = memo(({ el, now }: ActionCardProp) => {
         <ActionBidSection el={el} now={now} />
       </div>
 
-      <Button text="Bid Now" className={styles.Auction_BTN} />
+      <Button text="Bet Now" className={styles.Auction_BTN} />
     </div>
   );
 });

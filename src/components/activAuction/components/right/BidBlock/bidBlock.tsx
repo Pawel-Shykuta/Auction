@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button";
 import { useState } from "react";
 import { GoPerson } from "react-icons/go";
 import { useBalanceStore } from "@/store/useBalanceStore";
+import { useMessageStore } from "@/store/useMessageStore";
 
 function BidInput({
   currentBid,
@@ -26,6 +27,7 @@ function BidInput({
   const updateBid = useAuctionsStore((state) => state.updateBid);
 
   const { payment } = useBalanceStore();
+  const { addMessage } = useMessageStore();
 
   const bid = () => {
     const bidAmount = Number(bidInput);
@@ -41,6 +43,17 @@ function BidInput({
       updateActiveItem(updatedAuction);
       setBidInput("");
     }
+
+    const newMessage = {
+      id: Math.floor(Math.random() * 100000),
+      auctionId: Number(item.id),
+      Name: "New Bet",
+      title: item.description,
+      date: "2 hours ago",
+      link: "",
+    };
+
+    addMessage(newMessage);
   };
 
   return (

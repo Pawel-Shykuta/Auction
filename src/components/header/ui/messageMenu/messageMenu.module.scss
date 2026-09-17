@@ -17,7 +17,9 @@ $padding-y: 14px;
   top: 150%;
 
   width: 280px;
-  height: 350px;
+  max-height: 350px;
+  display: flex;
+  flex-direction: column;
   background-color: $color-bg-main;
   border: 1px solid $color-border-outer;
   border-radius: $radius-main;
@@ -37,6 +39,7 @@ $padding-y: 14px;
   align-items: center;
   padding: $padding-y $padding-x;
   border-bottom: 1px solid $color-border;
+  flex-shrink: 0;
 
   h3 {
     margin: 0;
@@ -58,11 +61,11 @@ $padding-y: 14px;
 .list {
   display: flex;
   flex-direction: column;
-
-  list {
-    display: flex;
-    flex-direction: column;
-  }
+  overflow-y: auto;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   .item {
     display: flex;
@@ -78,12 +81,11 @@ $padding-y: 14px;
       background-color: mix($color-bg-main, $color-border, 50%);
     }
 
-    // Модификатор для непрочитанного уведомления
     &--unread {
       background-color: $color-bg-unread;
     }
 
-    .item-title {
+    .item_title {
       font-size: 14px;
       font-weight: 600;
       color: $color-text-main;

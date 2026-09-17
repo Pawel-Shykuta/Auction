@@ -65,6 +65,7 @@ export default function Header() {
           </h1>
         </div>
       )}
+
       <div
         className={`${styles.nav_container} ${headerIsOpen ? styles.open : ""}`}
       >
