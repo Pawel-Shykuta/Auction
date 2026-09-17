@@ -1,10 +1,10 @@
-import { useItemStore } from "@/store/useItemStore";
+import { useActiveAuction } from "@/hooks/useActiveAuction";
 import styles from "./index.module.scss";
 import ItemPrice from "./ItemPrice/itemPrice";
 import BidBlock from "./BidBlock/bidBlock";
 
 export const RightContainer = () => {
-  const item = useItemStore((state) => state.activeItem);
+  const item = useActiveAuction();
 
   return (
     <section className={styles.right_container}>

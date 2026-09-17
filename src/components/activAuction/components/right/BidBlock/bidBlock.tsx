@@ -1,11 +1,10 @@
-import { useItemStore } from "@/store/useItemStore";
+import { useActiveAuction } from "@/hooks/useActiveAuction";
 import { useAuctionsStore } from "@/store/useAuctionsStore";
 import styles from "./bidBlock.module.scss";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
 import { GoPerson } from "react-icons/go";
-import { useBalanceStore } from "@/store/useBalanceStore";
 import { useMessageStore } from "@/store/useMessageStore";
 
 function BidInput({
@@ -22,27 +21,30 @@ function BidInput({
   const formattedMinBid = `$ ${minRequiredBid.toLocaleString()}`;
 
   const value = Number(bidInput) > 0 ? `$ ${bidInput}` : "";
-  const item = useItemStore((state) => state.activeItem);
-  const updateActiveItem = useItemStore((state) => state.updateActiveItem);
-  const updateBid = useAuctionsStore((state) => state.updateBid);
+  const item = useActiveAuction();
+  const placeBid = useAuctionsStore((state) => state.placeBid);
 
-  const { payment } = useBalanceStore();
   const { addMessage } = useMessageStore();
 
   const bid = () => {
     const bidAmount = Number(bidInput);
 
-    if (!item?.id || bidAmount <= 0 || bidAmount <= currentBid) return;
-
-    const paymentSuccessful = payment(bidAmount);
-
-    if (!paymentSuccessful) return;
-
-    const updatedAuction = updateBid(item.id, bidAmount);
-    if (updatedAuction) {
-      updateActiveItem(updatedAuction);
-      setBidInput("");
+    if (!item?.id) {
+      return;
     }
+
+    const result = placeBid(item.id, bidAmount);
+
+    if (!result.success) {
+      if (result.reason === "FINISHED") {
+        alert("This auction has already ended.");
+      } else if (result.reason === "TOO_LOW") {
+        alert(`Your bid must be at least $${minRequiredBid.toLocaleString()}.`);
+      }
+      return;
+    }
+
+    setBidInput("");
 
     const newMessage = {
       id: Math.floor(Math.random() * 100000),
@@ -109,7 +111,7 @@ function QuickBids({
 }
 
 function BidHistory() {
-  const item = useItemStore((state) => state.activeItem);
+  const item = useActiveAuction();
 
   return (
     <div className={styles.bid_history}>
@@ -130,7 +132,7 @@ function BidHistory() {
 }
 
 const BidBlock = () => {
-  const item = useItemStore((state) => state.activeItem);
+  const item = useActiveAuction();
   const currentBid = item?.currentBid || 0;
   const [bidInput, setBidInput] = useState("");
 

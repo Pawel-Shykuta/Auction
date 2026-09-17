@@ -1,27 +1,31 @@
-import type { Auctions } from "@/data/auctions";
 import { create } from "zustand";
 
 interface ItemState {
-  activeItem: Auctions | null;
-  liked: Auctions[];
+  activeItemId: string | null;
+  likedIds: string[];
 
-  setActiveItem: (el: Auctions | null) => void;
+  setActiveItemId: (id: string | null) => void;
   clearActiveItem: () => void;
-  addLiked: (el: Auctions) => void;
+  addLiked: (id: string) => void;
   removeLiked: (id: string) => void;
-  updateActiveItem: (el: Auctions) => void;
 }
 
 export const useItemStore = create<ItemState>()((set) => ({
-  activeItem: null,
-  liked: [],
+  activeItemId: null,
+  likedIds: [],
 
-  addLiked: (el) => set((state) => ({ liked: [...state.liked, el] })),
+  addLiked: (id) =>
+    set((state) =>
+      state.likedIds.includes(id)
+        ? state
+        : { likedIds: [...state.likedIds, id] },
+    ),
 
   removeLiked: (id) =>
-    set((state) => ({ liked: state.liked.filter((item) => item.id !== id) })),
+    set((state) => ({
+      likedIds: state.likedIds.filter((likedId) => likedId !== id),
+    })),
 
-  setActiveItem: (el) => set({ activeItem: el }),
-  clearActiveItem: () => set({ activeItem: null }),
-  updateActiveItem: (el) => set({ activeItem: el }),
+  setActiveItemId: (id) => set({ activeItemId: id }),
+  clearActiveItem: () => set({ activeItemId: null }),
 }));

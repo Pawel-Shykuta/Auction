@@ -3,12 +3,17 @@ import styles from "./list.module.scss";
 import { useHeaderStore } from "@/store/useHeaderStore";
 
 export default function List() {
-  const listArr = ["Home", "Browse", "HowItWorks", "Sell"];
+  const listArr = [
+    { label: "Home", path: "/" },
+    { label: "Browse", path: "/browse" },
+    { label: "HowItWorks", path: "how-it-works" },
+    { label: "Sell", path: "/" },
+  ];
   const navigate = useNavigate();
   const { changeHeaderIsOpen } = useHeaderStore();
 
-  const changePage = (item: string) => {
-    navigate(`/${item === "Home" ? "/" : item}`);
+  const changePage = (path: string) => {
+    navigate(path);
     window.scrollTo({ top: 0, behavior: "smooth" });
     changeHeaderIsOpen();
   };
@@ -16,8 +21,8 @@ export default function List() {
   return (
     <ul className={styles.list_Wrapper}>
       {listArr.map((item) => (
-        <li key={item} onClick={() => changePage(item)}>
-          {item}
+        <li key={item.path} onClick={() => changePage(item.path)}>
+          {item.label}
         </li>
       ))}
     </ul>
