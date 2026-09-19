@@ -4,7 +4,7 @@ import { GoPerson } from "react-icons/go";
 import { FaArrowTrendUp } from "react-icons/fa6";
 
 import styles from "./index.module.scss";
-import type { Auctions } from "@/data/auctions";
+import type { Auctions } from "@/entities/auction/auction.types";
 
 interface InfoboxesProps {
   item: Auctions | null;

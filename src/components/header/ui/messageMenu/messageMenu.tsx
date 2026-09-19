@@ -1,19 +1,20 @@
 import { useMessageStore } from "@/store/useMessageStore";
 import styles from "./messageMenu.module.scss";
 import { useItemStore } from "@/store/useItemStore";
-import { auctions } from "@/data/auctions";
+import { useAuctionsStore } from "@/store/useAuctionsStore";
 import { useHeaderStore } from "@/store/useHeaderStore";
 
 const MessageMenu = () => {
   const { messages } = useMessageStore();
-  const { setActiveItem } = useItemStore();
+  const setActiveItemId = useItemStore((state) => state.setActiveItemId);
+  const auctions = useAuctionsStore((state) => state.auctions);
   const { closeShowMessage } = useHeaderStore();
 
   const showItem = (e: React.MouseEvent, el: number) => {
     e.stopPropagation();
     const item = auctions.find((item) => Number(item.id) === el);
 
-    setActiveItem(item ?? null);
+    setActiveItemId(item?.id ?? null);
     closeShowMessage();
   };
 

@@ -1,4 +1,4 @@
-import type { Auctions } from "@/data/auctions";
+import type { Auctions } from "@/entities/auction/auction.types";
 import styles from "../auctions.module.scss";
 
 interface ActionTitleProp {

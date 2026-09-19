@@ -1,42 +1,66 @@
 import { create } from "zustand";
-import type { Auctions } from "@/data/auctions";
-import { auctions as initialAuctions } from "@/data/auctions";
+import type { Auctions } from "@/entities/auction/auction.types";
+import { auctions as initialAuctions } from "@/entities/auction/auction.data";
+import { useBalanceStore } from "@/store/useBalanceStore";
+
+const MIN_BID_STEP = 50;
+
+export type PlaceBidResult =
+  | { success: true; auction: Auctions }
+  | {
+      success: false;
+      reason: "NOT_FOUND" | "FINISHED" | "TOO_LOW" | "INSUFFICIENT_FUNDS";
+    };
 
 interface AuctionsState {
   auctions: Auctions[];
-  updateBid: (id: string, bid: number, bidderName?: string) => Auctions | null;
+  placeBid: (id: string, bid: number, bidderName?: string) => PlaceBidResult;
   resetAuctions: () => void;
 }
 
-export const useAuctionsStore = create<AuctionsState>()((set) => ({
+export const useAuctionsStore = create<AuctionsState>()((set, get) => ({
   auctions: JSON.parse(JSON.stringify(initialAuctions)),
 
-  updateBid: (id, bid, bidderName = "Me") => {
-    let updatedAuction: Auctions | null = null;
-    set((state) => {
-      const auctionsCopy = state.auctions.map((auction) => {
-        if (auction.id === id && bid > auction.currentBid) {
-          const updated = {
-            ...auction,
-            currentBid: bid,
-            totalBids: auction.totalBids + 1,
-            bidHistory: [
-              {
-                id: Date.now(),
-                name: bidderName,
-                price: String(bid),
-              },
-              ...auction.bidHistory,
-            ],
-          };
-          updatedAuction = updated;
-          return updated;
-        }
-        return auction;
-      });
-      return { auctions: auctionsCopy };
-    });
-    return updatedAuction;
+  placeBid: (id, bid, bidderName = "Me") => {
+    const auction = get().auctions.find((item) => item.id === id);
+
+    if (!auction) {
+      return { success: false, reason: "NOT_FOUND" };
+    }
+
+    if (new Date(auction.endTime).getTime() <= Date.now()) {
+      return { success: false, reason: "FINISHED" };
+    }
+
+    if (!Number.isFinite(bid) || bid < auction.currentBid + MIN_BID_STEP) {
+      return { success: false, reason: "TOO_LOW" };
+    }
+
+    if (!useBalanceStore.getState().payment(bid)) {
+      return { success: false, reason: "INSUFFICIENT_FUNDS" };
+    }
+
+    const updatedAuction: Auctions = {
+      ...auction,
+      currentBid: bid,
+      totalBids: auction.totalBids + 1,
+      bidHistory: [
+        {
+          id: Date.now(),
+          name: bidderName,
+          price: String(bid),
+        },
+        ...auction.bidHistory,
+      ],
+    };
+
+    set((state) => ({
+      auctions: state.auctions.map((item) =>
+        item.id === id ? updatedAuction : item,
+      ),
+    }));
+
+    return { success: true, auction: updatedAuction };
   },
 
   resetAuctions: () =>

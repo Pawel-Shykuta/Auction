@@ -5,13 +5,15 @@ import Footer from "./components/footer/footer";
 import Home from "./pages/home/home";
 import Browse from "./pages/browse/browse";
 import ActiveAuction from "./components/activAuction/activAuction";
-import { useItemStore } from "./store/useItemStore";
+import { useActiveAuction } from "./hooks/useActiveAuction";
 import { HowItWorks } from "./pages/howItWorks/howItWorks";
 import { useEffect } from "react";
 import { useHeaderStore } from "./store/useHeaderStore";
+import NotFound from "./pages/notFound/notFound";
 
 function App() {
-  const activeItem = useItemStore((state) => state.activeItem);
+  console.log("Test");
+  const activeItem = useActiveAuction();
 
   const { headerIsOpen } = useHeaderStore();
 
@@ -29,8 +31,9 @@ function App() {
       <div className="app_container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Browse" element={<Browse />} />
-          <Route path="/HowItWorks" element={<HowItWorks />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         {activeItem && <ActiveAuction />}
       </div>

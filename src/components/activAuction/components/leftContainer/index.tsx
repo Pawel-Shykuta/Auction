@@ -1,9 +1,9 @@
-import { useItemStore } from "@/store/useItemStore";
+import { useActiveAuction } from "@/hooks/useActiveAuction";
 import styles from "./index.module.scss";
 import Infoboxes from "./infoboxes";
 
 const LeftContainer = () => {
-  const item = useItemStore((state) => state.activeItem);
+  const item = useActiveAuction();
 
   return (
     <div className={styles.left_container}>

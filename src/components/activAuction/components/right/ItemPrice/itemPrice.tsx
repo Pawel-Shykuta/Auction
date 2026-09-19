@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from "./itemPrice.module.scss";
-import { useItemStore } from "@/store/useItemStore";
+import { useActiveAuction } from "@/hooks/useActiveAuction";
 import { IoMdTime } from "react-icons/io";
 import Timer from "@/components/auctions/components/Timer";
 
 function PriceContainer() {
-  const item = useItemStore((state) => state.activeItem);
+  const item = useActiveAuction();
 
   return (
     <div className={styles.price_container}>
@@ -24,7 +24,7 @@ function PriceContainer() {
 
 export default function ItemPrice() {
   const [now, setNow] = useState(() => Date.now());
-  const item = useItemStore((state) => state.activeItem);
+  const item = useActiveAuction();
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -23,7 +23,7 @@ const PriceRange = () => {
   useEffect(() => {
     setPriceMin(min * maxPrice);
     setPriceMax(max * maxPrice);
-  }, [min, max]);
+  }, [min, max, setPriceMin, setPriceMax]);
 
   return (
     <section className={styles.price_range}>
