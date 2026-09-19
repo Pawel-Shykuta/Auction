@@ -12,6 +12,7 @@ import { useHeaderStore } from "./store/useHeaderStore";
 import NotFound from "./pages/notFound/notFound";
 
 function App() {
+  console.log("Test");
   const activeItem = useActiveAuction();
 
   const { headerIsOpen } = useHeaderStore();
