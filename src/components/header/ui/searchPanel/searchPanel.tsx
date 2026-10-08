@@ -2,11 +2,12 @@ import styles from "./searchPanel.module.scss";
 import { FiSearch } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 import Input from "@/components/ui/input";
-import { useHeaderStore } from "@/store/useHeaderStore";
+
+import { useAuctionFiltersStore } from "@/store/useAuctionFiltersStore";
 
 export default function SearchPanel() {
-  const searchingText = useHeaderStore((state) => state.searchingText);
-  const setSearchingText = useHeaderStore((state) => state.setSearchingText);
+  const searchText = useAuctionFiltersStore((state) => state.searchText);
+  const setSearchText = useAuctionFiltersStore((state) => state.setSearchText);
 
   return (
     <section className={styles.searchPanel_Wrapper}>
@@ -14,14 +15,14 @@ export default function SearchPanel() {
       <Input
         type="text"
         placeholder="Search auctions..."
-        value={searchingText}
-        onChange={(e) => setSearchingText(e.target.value)}
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
         className={styles.searchPanel}
       />
-      {searchingText.length > 0 && (
+      {searchText.length > 0 && (
         <MdClose
           className={styles.closeIcon}
-          onClick={() => setSearchingText("")}
+          onClick={() => setSearchText("")}
         />
       )}
     </section>

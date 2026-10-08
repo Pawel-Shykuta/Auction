@@ -21,9 +21,9 @@ export const useBalanceStore = create<BalanceState>()((set, get) => ({
     const { balance } = get();
 
     if (balance < amount) {
-      alert("Not enough funds on the balance!!");
       return false;
     }
+
     set({ balance: balance - amount });
 
     return true;

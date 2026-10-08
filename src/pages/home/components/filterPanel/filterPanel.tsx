@@ -1,13 +1,14 @@
 import { useState } from "react";
 import styles from "./filterPanel.module.scss";
-import { useAppStore } from "@/store/useAppStore";
+import { useAuctionFiltersStore } from "@/store/useAuctionFiltersStore";
 import { CATEGORIES } from "@/constants/filters";
+import type { AuctionCategory } from "@/entities/auction/auction.types";
 
 export default function FilterPanel() {
   const [active, setActive] = useState(0);
-  const setFilter = useAppStore((state) => state.setFilter);
+  const setFilter = useAuctionFiltersStore((state) => state.setFilter);
 
-  const changeFilter = (el: string, i: number) => {
+  const changeFilter = (el: AuctionCategory, i: number) => {
     if (active === i) return;
     setActive(i);
     setFilter(el);

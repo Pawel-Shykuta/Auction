@@ -1,18 +1,22 @@
 import { useMessageStore } from "@/store/useMessageStore";
 import styles from "./messageMenu.module.scss";
-import { useItemStore } from "@/store/useItemStore";
+import { useAuctionDetailsStore } from "@/store/useAuctionDetailsStore";
 import { useAuctionsStore } from "@/store/useAuctionsStore";
-import { useHeaderStore } from "@/store/useHeaderStore";
+import { useNotificationsUiStore } from "@/store/useNotificationsUiStore";
+import Button from "@/components/ui/Button";
 
 const MessageMenu = () => {
+  const setActiveItemId = useAuctionDetailsStore(
+    (state) => state.setActiveItemId,
+  );
   const { messages } = useMessageStore();
-  const setActiveItemId = useItemStore((state) => state.setActiveItemId);
   const auctions = useAuctionsStore((state) => state.auctions);
-  const { closeShowMessage } = useHeaderStore();
+  const { closeShowMessage } = useNotificationsUiStore();
 
-  const showItem = (e: React.MouseEvent, el: number) => {
-    e.stopPropagation();
-    const item = auctions.find((item) => Number(item.id) === el);
+  const showItem = (event: React.MouseEvent, auctionId: string) => {
+    event.stopPropagation();
+
+    const item = auctions.find((item) => item.id === auctionId);
 
     setActiveItemId(item?.id ?? null);
     closeShowMessage();
@@ -27,13 +31,14 @@ const MessageMenu = () => {
 
       <div className={styles.list}>
         {messages.map((el) => (
-          <li
-            className={styles.item}
-            key={el.id}
-            onClick={(e) => showItem(e, el.auctionId)}
-          >
-            <span className={styles.item_title}>{el.Name}</span>
-            <span className={styles.item_time}>{el.title}</span>
+          <li className={styles.item} key={el.id}>
+            <Button
+              className={styles.item_button}
+              onClick={(event) => showItem(event, el.auctionId)}
+            >
+              <span className={styles.item_title}>{el.heading}</span>
+              <span className={styles.item_time}>{el.description}</span>
+            </Button>
           </li>
         ))}
       </div>

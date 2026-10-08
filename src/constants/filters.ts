@@ -1,4 +1,9 @@
-export const CATEGORIES = [
+import type {
+  AuctionCategory,
+  AuctionSort,
+} from "@/entities/auction/auction.types";
+
+export const CATEGORIES: AuctionCategory[] = [
   "All",
   "Watches",
   "Technology",
@@ -9,10 +14,11 @@ export const CATEGORIES = [
   "Photography",
 ];
 
-export const SORT_OPTIONS = [
-  "Price Low to High",
-  "Price High to Low",
-  "Recently Listed",
+export const SORT_OPTIONS: AuctionSort[] = [
+  "Ending Soon",
+  "Price: Low to High",
+  "Price: High to Low",
+  "Most Recent",
 ];
 
-export const LOCALE = "ru-RU";
+export const LOCALE = "en-US";

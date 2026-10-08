@@ -4,7 +4,7 @@ import Header from "./components/header";
 import Footer from "./components/footer/footer";
 import Home from "./pages/home/home";
 import Browse from "./pages/browse/browse";
-import ActiveAuction from "./components/activAuction/activAuction";
+import ActiveAuction from "./components/active-auction/ActiveAuction";
 import { useActiveAuction } from "./hooks/useActiveAuction";
 import { HowItWorks } from "./pages/howItWorks/howItWorks";
 import { useEffect } from "react";
@@ -12,7 +12,6 @@ import { useHeaderStore } from "./store/useHeaderStore";
 import NotFound from "./pages/notFound/notFound";
 
 function App() {
-  console.log("Test");
   const activeItem = useActiveAuction();
 
   const { headerIsOpen } = useHeaderStore();
