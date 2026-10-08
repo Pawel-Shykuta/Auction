@@ -1,14 +1,13 @@
-interface ButtonProps {
-  text?: React.ReactNode;
-  disabled?: boolean;
-  className?: string;
-  onClick?: () => void;
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  text?: ReactNode;
 }
 
-const Button = ({ text, className, onClick, disabled }: ButtonProps) => {
+const Button = ({ text, type = "button", children, ...props }: ButtonProps) => {
   return (
-    <button className={className} onClick={onClick} disabled={disabled}>
-      {text}
+    <button type={type} {...props}>
+      {text ?? children}
     </button>
   );
 };

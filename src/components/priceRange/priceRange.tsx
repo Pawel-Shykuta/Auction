@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import styles from "./priceRange.module.scss";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { useAppStore } from "@/store/useAppStore";
+import { useAuctionFiltersStore } from "@/store/useAuctionFiltersStore";
 
 const PriceRange = () => {
   const [min, setMin] = useState<number>(0);
   const [max, setMax] = useState<number>(100);
 
-  const setPriceMin = useAppStore((state) => state.setPriceMin);
-  const setPriceMax = useAppStore((state) => state.setPriceMax);
+  const setPriceMin = useAuctionFiltersStore((state) => state.setPriceMin);
+  const setPriceMax = useAuctionFiltersStore((state) => state.setPriceMax);
 
   const maxPrice = 3000;
 

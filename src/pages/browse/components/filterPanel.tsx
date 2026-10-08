@@ -1,5 +1,7 @@
 import styles from "./filterPanel.module.scss";
 
+import { CATEGORIES, SORT_OPTIONS } from "@/constants/filters";
+
 import { IoMdOptions } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
@@ -7,16 +9,16 @@ import PriceRange from "@/components/priceRange/priceRange";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/Button";
 
-import DropDW from "@/components/dropDW/dropDW";
-import { useAppStore } from "@/store/useAppStore";
-import { useHeaderStore } from "@/store/useHeaderStore";
+import Dropdown from "@/components/dropdown/Dropdown";
+
+import { useAuctionFiltersStore } from "@/store/useAuctionFiltersStore";
 
 const SearchPanel = () => {
   const [filterOpen, setFilterOpen] = useState(false);
-  const searchingText = useHeaderStore((state) => state.searchingText);
-  const setSearchingText = useHeaderStore((state) => state.setSearchingText);
-  const setFilter = useAppStore((state) => state.setFilter);
-  const setSortBy = useAppStore((state) => state.setSortBy);
+  const searchText = useAuctionFiltersStore((state) => state.searchText);
+  const setSearchText = useAuctionFiltersStore((state) => state.setSearchText);
+  const setFilter = useAuctionFiltersStore((state) => state.setFilter);
+  const setSortBy = useAuctionFiltersStore((state) => state.setSortBy);
 
   return (
     <div className={styles.Search_panel}>
@@ -26,8 +28,8 @@ const SearchPanel = () => {
           <Input
             placeholder="Search auctions..."
             className={styles.Search_input}
-            value={searchingText}
-            onChange={(e) => setSearchingText(e.target.value)}
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
         </div>
 
@@ -44,29 +46,15 @@ const SearchPanel = () => {
 
       {filterOpen && (
         <div className={styles.filters_container}>
-          <DropDW
-            categorys={[
-              "All",
-              "Watches",
-              "Technology",
-              "Art",
-              "Vehicles",
-              "Fashion",
-              "Jewelry",
-              "Photography",
-            ]}
-            CategoryName={"Category"}
-            onClick={(el) => setFilter(el)}
+          <Dropdown
+            options={CATEGORIES}
+            label="Category"
+            onChange={(option) => setFilter(option)}
           />
-          <DropDW
-            categorys={[
-              "Ending Soon",
-              "Price: Low to High",
-              "Price: High to Low",
-              "Most Recent",
-            ]}
-            CategoryName={"Sort By"}
-            onClick={(el) => setSortBy(el)}
+          <Dropdown
+            options={SORT_OPTIONS}
+            label="Sort By"
+            onChange={(option) => setSortBy(option)}
           />
 
           <PriceRange />

@@ -1,53 +1,35 @@
 import styles from "./indexStyles.module.scss";
-
+import { useEffect, useRef, useState } from "react";
+import { useHeaderStore } from "@/store/useHeaderStore";
+import { useBalanceStore } from "@/store/useBalanceStore";
 import Icons from "./ui/icons/icons";
 import List from "./ui/list/list";
 import Logo from "./ui/logo/logo";
 import SearchPanel from "./ui/searchPanel/searchPanel";
 import BurgerMenu from "./ui/burgerMenu/burgerMenu";
 import LogoForPhones from "./ui/logo/logoForPhones";
-import { useHeaderStore } from "@/store/useHeaderStore";
-import { useEffect, useState } from "react";
 import Balance from "./ui/balance/balance";
-import { useBalanceStore } from "@/store/useBalanceStore";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export default function Header() {
-  const { headerIsOpen } = useHeaderStore();
+  const headerIsOpen = useHeaderStore((state) => state.headerIsOpen);
+  const balance = useBalanceStore((state) => state.balance);
   const [showHeader, setShowHeader] = useState(true);
-  const [lastScroll, setLastScroll] = useState(0);
-  const [showSearchPanel, setShowSearchPanel] = useState(
-    () => window.innerWidth > 450,
-  );
-  const { balance } = useBalanceStore();
+  const showSearchPanel = useMediaQuery("(min-width: 451px)");
+  const lastScrollRef = useRef(0);
 
   useEffect(() => {
-    const changeScroll = () => {
-      const current = window.scrollY;
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
 
-      if (current > lastScroll) {
-        setShowHeader(false);
-      } else {
-        setShowHeader(true);
-      }
-      setLastScroll(current);
+      setShowHeader(currentScroll <= lastScrollRef.current);
+      lastScrollRef.current = currentScroll;
     };
 
-    window.addEventListener("scroll", changeScroll);
-
-    return () => window.removeEventListener("scroll", changeScroll);
-  }, [lastScroll]);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 451px)");
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setShowSearchPanel(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      mediaQuery.removeEventListener("change", handleChange);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 

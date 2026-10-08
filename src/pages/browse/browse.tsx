@@ -1,4 +1,4 @@
-import { Auctions } from "@/components/auctions/auctions";
+import AuctionList from "@/components/auction-list/AuctionList";
 import styles from "./browse.module.scss";
 import SearchPanel from "./components/filterPanel";
 
@@ -13,7 +13,7 @@ const Browse = () => {
       </div>
       <SearchPanel />
 
-      <Auctions />
+      <AuctionList />
     </section>
   );
 };
